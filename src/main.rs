@@ -167,7 +167,7 @@ impl LinkExtractor {
             .map(|mut url| {
                 url.set_fragment(None);
                 url.set_query(None);
-                url.into_string()
+                Into::<String>::into(url)
             })
             .filter(|url| !Self::clearly_not_html(url))
             .filter(|url| url.len() <= 300)
@@ -315,7 +315,7 @@ async fn crawler_thread(
         let cleaned_text = regex.replace_all(trimmed_text, " ");
         print!("Document Text: {}", cleaned_text);
         std::io::stdout().flush().unwrap();
-        let digest = term_extractor.digest(url.into_string(), &text);
+        let digest = term_extractor.digest(Into::<String>::into(url), &text);
         if let Err(_) = index_sender.send(digest).await {
             panic!("index channel closed");
         };
