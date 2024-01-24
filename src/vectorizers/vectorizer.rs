@@ -19,7 +19,7 @@ impl Vectorizer {
 
     pub fn embed(&self, query: &str) -> Vec<u8> {
         println!("Querying: {}", query);
-        let embeddings = self.model.encode(&[query])?;
+        let embeddings: ! = self.model.encode(&[query])?;
         Ok((embeddings))
     }
 }

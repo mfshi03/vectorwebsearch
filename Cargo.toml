@@ -2,7 +2,7 @@
 name = "vec2search"
 version = "0.1.0"
 authors = ["Michael Shi <mfshi03@gmail.com>"]
-edition = "2023"
+edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -16,4 +16,4 @@ cbloom = "0.1.3"
 rocket = "0.4.5"
 rocket_contrib = { version = "0.4.5", features = ["tera_templates"] }
 serde = { version = "1.0", features = ["derive"] }
-rust-bert = "0.21.0"
+#rust-bert = "0.22.0"

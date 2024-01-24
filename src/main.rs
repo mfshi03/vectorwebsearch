@@ -1,5 +1,3 @@
-mod vectorizer;
-
 use cbloom;
 use http::Uri;
 use regex::Regex;
@@ -21,7 +19,7 @@ use tokio::sync::mpsc::{channel, Receiver, Sender};
 use tokio::time::delay_for;
 use url::Url;
 
-use ::minisearch::sparse::SparseU32Vec;
+use ::vec2search::sparse::SparseU32Vec;
 
 pub fn hash64<T: Hash>(v: &T) -> u64 {
     let mut hasher = DefaultHasher::new();
@@ -224,7 +222,6 @@ impl Index {
             metadata.insert(hash64(term), (start, end));
         }
 
-        // TODO: better serialization abstraction
         Self::sync_write(self.path.join("terms.bytes"), &encoded_terms);
         Self::sync_write(
             self.path.join("metadata.bytes"),
@@ -251,7 +248,7 @@ impl Index {
     }
 
     fn serialize_urls(urls: &Vec<String>) -> Vec<u8> {
-        let mut encoded = Vec::new();
+        let mut encoded: Vec<u8> = Vec::new();
         encoded.extend_from_slice(&(urls.len() as u32).to_be_bytes());
         let mut i: u32 = 0;
         for url in urls {

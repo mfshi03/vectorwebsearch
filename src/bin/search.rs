@@ -3,7 +3,7 @@
 #[macro_use]
 extern crate rocket;
 
-use ::minisearch::sparse::SparseU32Vec;
+use ::vec2search::sparse::SparseU32Vec;
 use rocket::State;
 use rocket_contrib::templates::Template;
 use serde::Serialize;
