@@ -381,7 +381,7 @@ async fn main() {
 
     let (index_sender, mut index_receiver) = channel(4096);
     let n_finished = Arc::new(AtomicUsize::new(0));
-    let mut index = Index::new("./alexsearch/".into());
+    let mut index = Index::new("./search/".into());
     let seen = Arc::new(cbloom::Filter::new(1_000_000, 100_000));
     for host in hosts.iter() {
         let index_sender = index_sender.clone();
